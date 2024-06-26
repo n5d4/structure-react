@@ -1,5 +1,5 @@
 import React from 'react';
-import fabricationImage from '../assets/welding.gif';
+import fabricationImage from '../assets/ferrari.gif';
 
 const CustomFabrication = () => {
     return (

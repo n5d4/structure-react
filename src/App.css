@@ -52,15 +52,15 @@ body, html, #root, .app {
 /*}*/
 
 .section-title {
-  /*position: relative;*/
-  font-size: 6rem;
-  /*text-align: center;*/
+  position: relative;
+  font-size: 5rem;
+  text-align: center;
   padding: 20px;
   color: white;
-  /*z-index: 2; !* Ensure title text is above other elements *!*/
-  /*border: 3px solid white;*/
-
+  z-index: 2;
+  border: 3px solid white;
 }
+
 
 .section-text {
   z-index: 2; /* Ensure title text is above other elements */
@@ -73,6 +73,7 @@ body, html, #root, .app {
   z-index: 1; /* Ensure content is above the background image */
   text-align: center; /* Center content horizontally */
   color: white; /* Set color of text */
+  position: relative;
 }
 
 .indicator {
@@ -110,3 +111,59 @@ body, html, #root, .app {
   background-color: white; /* Change background color on hover */
   color: gray; /* Change text color on hover */
 }
+
+.social-icon {
+  margin: 0 10px;
+  color: white;
+  transition: transform 0.3s ease, color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  color: #ddd;
+}
+
+.icon-container {
+  margin-top: 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 80%;
+  position: relative;
+}
+
+.contact-info { 
+  opacity: 100%;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Additional styles as needed */
