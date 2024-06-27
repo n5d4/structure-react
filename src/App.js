@@ -9,6 +9,7 @@ const App = () => {
     const controls = useAnimation();
     const [currentSection, setCurrentSection] = useState(0);
     const [scrollDisabled, setScrollDisabled] = useState(false);
+    const [touchStartY, setTouchStartY] = useState(null);
 
     const sections = [
         { id: 0, component: <Home disableScroll={setScrollDisabled} /> },
@@ -26,42 +27,29 @@ const App = () => {
         }
     };
 
-    const handleTouchStart = (startEvent) => {
-        let startY = startEvent.touches[0].clientY;
+    const handleTouchStart = (event) => {
+        setTouchStartY(event.touches[0].clientY);
+    };
 
-        const handleTouchMove = (moveEvent) => {
-            let deltaY = moveEvent.touches[0].clientY - startY;
-
-            if (!scrollDisabled) {
-                if (deltaY > 50 && currentSection < sections.length - 1) {
-                    setCurrentSection(currentSection + 1);
-                    startY = moveEvent.touches[0].clientY; // Reset startY for next move
-                } else if (deltaY < -50 && currentSection > 0) {
-                    setCurrentSection(currentSection - 1);
-                    startY = moveEvent.touches[0].clientY; // Reset startY for next move
-                }
+    const handleTouchMove = (event) => {
+        if (!scrollDisabled && touchStartY !== null) {
+            const deltaY = event.touches[0].clientY - touchStartY;
+            if (deltaY > 50 && currentSection > 0) {
+                setCurrentSection(currentSection - 1);
+                setTouchStartY(null);
+            } else if (deltaY < -50 && currentSection < sections.length - 1) {
+                setCurrentSection(currentSection + 1);
+                setTouchStartY(null);
             }
-        };
-
-        const handleTouchEnd = () => {
-            document.removeEventListener('touchmove', handleTouchMove);
-            document.removeEventListener('touchend', handleTouchEnd);
-        };
-
-        document.addEventListener('touchmove', handleTouchMove);
-        document.addEventListener('touchend', handleTouchEnd);
+        }
     };
 
     useEffect(() => {
         controls.start({ y: -currentSection * 100 + 'vh' });
     }, [currentSection, controls]);
 
-    const goToSection = (sectionId) => {
-        setCurrentSection(sectionId);
-    };
-
     return (
-        <div className="app" onWheel={handleScroll} onTouchStart={handleTouchStart}>
+        <div className="app" onWheel={handleScroll} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
             <motion.div
                 className="sections"
                 animate={controls}
@@ -78,7 +66,7 @@ const App = () => {
                     <div
                         key={section.id}
                         className={`dot ${section.id === currentSection ? 'active' : ''}`}
-                        onClick={() => goToSection(section.id)}
+                        onClick={() => setCurrentSection(section.id)}
                     ></div>
                 ))}
             </div>
