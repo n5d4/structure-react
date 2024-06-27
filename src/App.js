@@ -13,7 +13,7 @@ const App = () => {
 
     const sections = [
         { id: 0, component: <Home disableScroll={setScrollDisabled} /> },
-        { id: 1, component: <AutomotiveRepairPerformance /> },
+        { id: 1, component: <AutomotiveRepairPerformance disableScroll={setScrollDisabled} /> },
         { id: 2, component: <CustomFabrication /> },
     ];
 

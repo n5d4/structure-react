@@ -51,11 +51,25 @@ const Home = ({ disableScroll }) => {
                 overlayClassName="modal-overlay"
             >
                 <button className="close-button" onClick={closeModal}>×</button>
-                <div className="contact-info">
-                    <h2>Contact Information</h2>
-                    <p>Email: your-structuremke@gmail.com</p>
-                    <p>Phone: (123) 456-7890</p>
-                    <p>Address: 123 Main St, Anytown, USA</p>
+                <div className="modal-body">
+                    <div className="about-us">
+                        <h2>About Us</h2>
+                        <p>At Structure MKE, we specialize in enhancing automotive performance and providing meticulous
+                            repair services.
+                            Located in Milwaukee, our dedicated team combines passion with precision to deliver
+                            top-notch solutions tailored
+                            to your vehicle's needs. From turbocharged upgrades to custom fabrication,
+                            we're committed to elevating your driving experience with expertise and reliability.</p>
+                    </div>
+                    <div className="hours">
+                        <h2>Hours</h2>
+                        <p>Monday-Friday, 8:00am-4:00pm</p>
+                    </div>
+                    <div className="contact-info">
+                        <h2>Contact Information</h2>
+                        <p>Email: structuremke@gmail.com</p>
+                        <p>Phone: 414-882-7099</p>
+                    </div>
                 </div>
             </Modal>
         </div>
