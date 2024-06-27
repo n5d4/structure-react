@@ -21,13 +21,10 @@ const AutomotiveRepairPerformance = ({ disableScroll }) => {
 
     return (
         <div className="section">
-
             <div className="background-image" style={{backgroundImage: `url(${automotiveImage})`}}></div>
             <img src={logo} alt="Logo" className="corner-logo"/>
             <div className="content">
-
                 <div className='section-title'>Automotive</div>
-                <hr/>
                 <p className='section-text'>From routine maintenance to intricate repairs, we've got you covered.</p>
                 <button className="custom-button" onClick={openModal}>Services</button>
             </div>

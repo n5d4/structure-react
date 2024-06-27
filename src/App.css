@@ -19,6 +19,7 @@ body, html, #root, .app {
     display: flex;
     flex-direction: column;
     height: 300vh; /* 3 sections, each taking up 100vh */
+    will-change: transform;
 }
 
 .section {
@@ -57,8 +58,6 @@ body, html, #root, .app {
   transform: translateX(-50%); /* Center the logo horizontally */
     z-index: 10; /* Ensure the logo is above other content if necessary */
 }
-
-
 
 .section-title {
     position: relative;
@@ -189,7 +188,7 @@ body, html, #root, .app {
     }
 
     .section-title {
-        font-size: 3rem; /* Adjust font size for mobile */
+        font-size: 2.5rem; /* Adjust font size for mobile */
         padding: .1em;
         border: 0;
     }
