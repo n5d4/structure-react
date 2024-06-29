@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { FaInstagram, FaFacebook, FaAddressCard } from 'react-icons/fa';
-import homeImage from '../assets/home-800.gif';
+import homeImageDesktop from '../assets/home.gif';
+import homeImageMobile from '../assets/home-mobile.gif';
 import logo from '../assets/logo.png';
 
 Modal.setAppElement('#root'); // Make sure to set the root element for accessibility
 
 const Home = ({ disableScroll }) => {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [backgroundImage, setBackgroundImage] = useState(homeImageDesktop);
+
+    useEffect(() => {
+        const updateBackgroundImage = () => {
+            if (window.innerWidth <= 768) {
+                setBackgroundImage(homeImageMobile);
+            } else {
+                setBackgroundImage(homeImageDesktop);
+            }
+        };
+
+        updateBackgroundImage(); // Initial check
+
+        window.addEventListener('resize', updateBackgroundImage);
+
+        return () => {
+            window.removeEventListener('resize', updateBackgroundImage);
+        };
+    }, []);
 
     useEffect(() => {
         if (isModalOpen) {
@@ -28,7 +48,7 @@ const Home = ({ disableScroll }) => {
 
     return (
         <div className="section">
-            <div className="background-image" style={{ backgroundImage: `url(${homeImage})` }}></div>
+            <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
             <div className="content">
                 <img src={logo} alt="Home" className="logo" />
                 <div className='icon-container'>

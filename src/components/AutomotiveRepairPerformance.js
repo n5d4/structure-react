@@ -1,10 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import automotiveImage from '../assets/automotive.gif';
 import logo from '../assets/logo.png';
 import Modal from "react-modal";
+import automotiveImageDesktop from "../assets/automotive.gif";
+import automotiveMobile from "../assets/automotive-mobile.gif";
 
 const AutomotiveRepairPerformance = ({ disableScroll }) => {
     const [isModalOpen, setModalOpen] = useState(false);
+    const [backgroundImage, setBackgroundImage] = useState(automotiveImageDesktop);
+
+    useEffect(() => {
+        const updateBackgroundImage = () => {
+            if (window.innerWidth <= 768) {
+                setBackgroundImage(automotiveMobile);
+            } else {
+                setBackgroundImage(automotiveImageDesktop);
+            }
+        };
+
+        updateBackgroundImage();
+
+        window.addEventListener('resize', updateBackgroundImage);
+
+        return () => {
+            window.removeEventListener('resize', updateBackgroundImage);
+        };
+    }, []);
 
     useEffect(() => {
         if (isModalOpen) {
@@ -21,7 +41,7 @@ const AutomotiveRepairPerformance = ({ disableScroll }) => {
 
     return (
         <div className="section">
-            <div className="background-image" style={{backgroundImage: `url(${automotiveImage})`}}></div>
+            <div className="background-image" style={{backgroundImage: `url(${backgroundImage})`}}></div>
             <img src={logo} alt="Logo" className="corner-logo"/>
             <div className="content">
                 <div className='section-title'>Automotive</div>
