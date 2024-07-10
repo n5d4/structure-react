@@ -13,12 +13,13 @@ body, html, #root, .app {
 
 .app {
     position: relative;
+    user-select: none;
 }
 
 .sections {
     display: flex;
     flex-direction: column;
-    height: 300vh; /* 3 sections, each taking up 100vh */
+    height: 300vh;
     will-change: transform;
 }
 
@@ -43,43 +44,47 @@ body, html, #root, .app {
 }
 
 .logo {
-    max-width: 750px; /* Adjust the maximum width of the logo */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 850px;
+    height: auto;
+    user-select: none;
 }
 
 .corner-logo {
-    max-width: 125px; /* Adjust the maximum width of the logo as needed */
-    height: auto; /* Maintain aspect ratio */
-    position: absolute; /* Position the logo absolutely within its container */
-    top: 10px; /* Adjust top spacing */
-    /*left: 10px; !* Adjust left spacing *!*/
-
-  left: 50%; /* Move the logo to the horizontal center */
-  transform: translateX(-50%); /* Center the logo horizontally */
-    z-index: 10; /* Ensure the logo is above other content if necessary */
+  user-select: none;
+    max-width: 250px;
+    height: auto;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
 .section-title {
+    /* font-family: "Merriweather", serif; */
+    font-family: "Bona Nova SC", serif;
     position: relative;
     font-size: 5rem;
     text-align: center;
-    padding: .25em;
     color: white;
     z-index: 2;
-    /*border: 3px solid white;*/
+    padding: 0.25em 0;
+    user-select: none;
 }
 
 .section-text {
-    z-index: 2; /* Ensure title text is above other elements */
+    z-index: 2;
     color: white;
     text-align: center;
     font-size: 2em;
+    user-select: none;
+    max-width: 30em;
 }
 
 .content {
-    z-index: 1; /* Ensure content is above the background image */
-    text-align: center; /* Center content horizontally */
-    color: white; /* Set color of text */
+    z-index: 1;
+    text-align: center;
+    color: white;
     position: relative;
 }
 
@@ -97,14 +102,14 @@ body, html, #root, .app {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: dimgray;
+    background-color: whitesmoke;
     margin-bottom: 10px;
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .dot.active {
-    background-color: white;
+    background-color: red;
 }
 
 .dot:hover {
@@ -112,25 +117,23 @@ body, html, #root, .app {
 }
 
 .custom-button {
+    user-select: none;
     background-color: transparent;
     color: white;
-    border: 2px solid white;
-    border-radius: 20px; /* Adjust the border-radius to round the corners */
+    border: 3.5px solid red;
     padding: 10px 20px;
     font-size: 1rem;
     margin-top: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease;
 }
 
 .custom-button:hover {
-    background-color: white; /* Change background color on hover */
-    color: gray; /* Change text color on hover */
+    background-color: red;
 }
 
 .social-icon {
     margin: 0 10px;
-    color: white;
     transition: transform 0.3s ease, color 0.3s ease;
     background: none;
     border: none;
@@ -139,7 +142,19 @@ body, html, #root, .app {
 
 .social-icon:hover {
     transform: scale(1.1);
-    color: #ddd;
+    /* color: #ddd; */
+}
+
+.instagram-icon {
+  color: #E4405F;
+}
+
+.facebook-icon {
+  color: #1877F2;
+}
+
+.contact-icon { 
+  color: goldenrod;
 }
 
 .icon-container {
@@ -160,16 +175,12 @@ body, html, #root, .app {
 }
 
 .modal-content {
-    background: white;
+    background: rgba(255, 255, 255, 0.92);
     padding: 20px;
     border-radius: 10px;
     max-width: 500px;
     width: 80%;
     position: relative;
-}
-
-.contact-info {
-    opacity: 100%;
 }
 
 .close-button {
@@ -182,18 +193,40 @@ body, html, #root, .app {
     cursor: pointer;
 }
 
+.hr-arp, .hr-cf {
+  height: 2px;
+  background-color: white;
+  border: 0;
+}
+
+.hr-arp {
+  max-width:30em;
+}
+
+.hr-cf {
+  max-width:50em;
+}
+
 @media (max-width: 768px) {
     .logo {
-        max-width: 80%; /* Adjust logo size for smaller screens */
+        max-width: 80%;
     }
 
     .section-title {
-        font-size: 2.5rem; /* Adjust font size for mobile */
+        font-size: 1.9rem; 
         padding: .1em;
-        border: 0;
     }
 
     .section-text {
-        font-size: 1.2rem; /* Adjust font size for mobile */
+        font-size: 1.2rem; 
+        max-width: 20em;
+    }
+
+    .hr-arp {
+      max-width:19em;
+    }
+    
+    .hr-cf {
+      max-width:20em;
     }
 }

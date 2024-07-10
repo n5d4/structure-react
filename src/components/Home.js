@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { FaInstagram, FaFacebook, FaAddressCard } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaInstagram, FaFacebook, FaAddressCard, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+
 import homeImageDesktop from '../assets/home.gif';
 import homeImageMobile from '../assets/home-mobile.gif';
 import logo from '../assets/logo.png';
 
-Modal.setAppElement('#root'); // Make sure to set the root element for accessibility
+Modal.setAppElement('#root');
 
-const Home = ({ disableScroll }) => {
+const Home = ({ currentSection, disableScroll }) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState(homeImageDesktop);
 
@@ -20,7 +22,7 @@ const Home = ({ disableScroll }) => {
             }
         };
 
-        updateBackgroundImage(); // Initial check
+        updateBackgroundImage();
 
         window.addEventListener('resize', updateBackgroundImage);
 
@@ -50,18 +52,33 @@ const Home = ({ disableScroll }) => {
         <div className="section">
             <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
             <div className="content">
-                <img src={logo} alt="Home" className="logo" />
+            <motion.div
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={currentSection === 0 ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                      <img src={logo} alt="Home" className="logo" />
+                    </motion.div>
+                    <br/>
+                    <br/>
+                    <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={currentSection === 0 ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                
                 <div className='icon-container'>
-                    <button className="social-icon" onClick={() => openLink("https://www.instagram.com/structure_fab_dsg")}>
+                    <button className="social-icon instagram-icon" onClick={() => openLink("https://www.instagram.com/structure_fab_dsg")}>
                         <FaInstagram size={50} />
                     </button>
-                    <button className="social-icon" onClick={() => openLink("https://www.facebook.com/Structure.Fab.Design")}>
+                    <button className="social-icon facebook-icon" onClick={() => openLink("https://www.facebook.com/Structure.Fab.Design")}>
                         <FaFacebook size={50} />
                     </button>
-                    <button className="social-icon" onClick={openModal}>
+                    <button className="social-icon contact-icon" onClick={openModal}>
                         <FaAddressCard size={50} />
                     </button>
                 </div>
+                </motion.div>
             </div>
             <Modal
                 isOpen={isModalOpen}
@@ -73,22 +90,27 @@ const Home = ({ disableScroll }) => {
                 <button className="close-button" onClick={closeModal}>×</button>
                 <div className="modal-body">
                     <div className="about-us">
-                        <h2>About Us</h2>
+                        <h2 className='contact-header'>About Us</h2>
                         <p>At Structure MKE, we specialize in enhancing automotive performance and providing meticulous
                             repair services.
                             Located in Milwaukee, our dedicated team combines passion with precision to deliver
                             top-notch solutions tailored
-                            to your vehicle's needs. From turbocharged upgrades to custom fabrication,
+                            to your vehicle's needs. From oil changes to custom fabrication,
                             we're committed to elevating your driving experience with expertise and reliability.</p>
                     </div>
                     <div className="hours">
-                        <h2>Hours</h2>
-                        <p>Monday-Friday, 8:00am-4:00pm</p>
+                        <h2 className='contact-header'>Hours</h2>
+                        <p>Tuesday-Sunday, 8:00am-6:30pm</p>
                     </div>
                     <div className="contact-info">
-                        <h2>Contact Information</h2>
-                        <p>Email: structuremke@gmail.com</p>
-                        <p>Phone: 414-882-7099</p>
+                        <h2 className='contact-header'>Contact Information</h2>
+                        <div className='address-container'>
+                        <FaMapMarkerAlt /> 7119 W National Ave West Allis, Wi 53214
+                        <br />
+                        <FaPhone /> 414-882-7099
+                        <br/>
+                        <FaEnvelope /> structuremke@gmail.com
+                        </div>
                     </div>
                 </div>
             </Modal>

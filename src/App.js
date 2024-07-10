@@ -12,9 +12,9 @@ const App = () => {
     const [touchStartY, setTouchStartY] = useState(null);
 
     const sections = [
-        { id: 0, component: <Home disableScroll={setScrollDisabled} /> },
-        { id: 1, component: <AutomotiveRepairPerformance disableScroll={setScrollDisabled} /> },
-        { id: 2, component: <CustomFabrication /> },
+        { id: 0, component: <Home currentSection={currentSection} disableScroll={setScrollDisabled} /> },
+        { id: 1, component: <AutomotiveRepairPerformance disableScroll={setScrollDisabled} currentSection={currentSection} /> },
+        { id: 2, component: <CustomFabrication currentSection={currentSection} /> },
     ];
 
     const handleScroll = (event) => {

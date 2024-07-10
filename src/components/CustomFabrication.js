@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import logo from "../assets/logo.png";
+import { motion } from 'framer-motion';
 import fabricationImageDesktop from "../assets/plasma.gif";
 import fabricationMobile from "../assets/plasma-mobile.gif";
 
-const CustomFabrication = () => {
+const CustomFabrication = ({currentSection}) => {
     const [backgroundImage, setBackgroundImage] = useState(fabricationImageDesktop);
 
     useEffect(() => {
@@ -29,9 +30,24 @@ const CustomFabrication = () => {
             <img src={logo} alt="Logo" className="corner-logo"/>
             <div className="background-image" style={{backgroundImage: `url(${backgroundImage})`}}></div>
             <div className="content">
-                <div className='section-title'>Custom Fabrication</div>
-                <p className='section-text'>We do this and that and more of this.</p>
-                <button className="custom-button">Gallery</button>
+            <motion.div
+                    className="section-title"
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={currentSection === 2 ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    Custom Fabrication
+                </motion.div>
+                <hr className="hr-cf"/>
+                <motion.div
+                    // className='section-text'
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={currentSection === 2 ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    <p className='section-text'>We specialize in welding, plasma cutting, and crafting bespoke furniture, automotive components, railings, and more.</p>
+                    
+                </motion.div>
             </div>
         </div>
     );

@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import logo from '../assets/logo.png';
-import Modal from "react-modal";
-import automotiveImageDesktop from "../assets/automotive.gif";
-import automotiveMobile from "../assets/automotive-mobile.gif";
+import Modal from 'react-modal';
+import automotiveImageDesktop from '../assets/automotive.gif';
+import automotiveMobile from '../assets/automotive-mobile.gif';
 
-const AutomotiveRepairPerformance = ({ disableScroll }) => {
+const AutomotiveRepairPerformance = ({ currentSection, disableScroll }) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState(automotiveImageDesktop);
 
@@ -41,12 +42,33 @@ const AutomotiveRepairPerformance = ({ disableScroll }) => {
 
     return (
         <div className="section">
-            <div className="background-image" style={{backgroundImage: `url(${backgroundImage})`}}></div>
-            <img src={logo} alt="Logo" className="corner-logo"/>
+            <div className="background-image" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+            <img src={logo} alt="Logo" className="corner-logo" />
             <div className="content">
-                <div className='section-title'>Automotive</div>
-                <p className='section-text'>From routine maintenance to intricate repairs, we've got you covered.</p>
-                <button className="custom-button" onClick={openModal}>Services</button>
+                <motion.div
+                    className="section-title"
+                    initial={{ y: -100, opacity: 0 }}
+                    animate={currentSection === 1 ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    Automotive
+                    </motion.div>
+                    <hr className="hr-arp"/>
+                <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={currentSection === 1 ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    <p className='section-text'>From routine maintenance to intricate repairs, we've got you covered.</p>
+                </motion.div>
+                <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={currentSection === 1 ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+                    transition={{ duration: 1.25 }}
+                >
+                    <button className="custom-button" onClick={openModal}>Services</button>
+                </motion.div>
+
             </div>
             <Modal
                 isOpen={isModalOpen}
