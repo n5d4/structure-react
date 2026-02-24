@@ -98,20 +98,6 @@ const Home = ({ currentSection, disableScroll }) => {
                             to your vehicle's needs. From oil changes to custom fabrication,
                             we're committed to elevating your driving experience with expertise and reliability.</p>
                     </div>
-                    <div className="hours">
-                        <h2 className='contact-header'>Hours</h2>
-                        <p>Tuesday-Sunday, 8:00am-6:30pm</p>
-                    </div>
-                    <div className="contact-info">
-                        <h2 className='contact-header'>Contact Information</h2>
-                        <div className='address-container'>
-                        <FaMapMarkerAlt /> 7119 W National Ave West Allis, Wi 53214
-                        <br />
-                        <FaPhone /> 414-882-7099
-                        <br/>
-                        <FaEnvelope /> structuremke@gmail.com
-                        </div>
-                    </div>
                 </div>
             </Modal>
         </div>
